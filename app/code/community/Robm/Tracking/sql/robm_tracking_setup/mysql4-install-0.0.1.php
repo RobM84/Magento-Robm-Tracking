@@ -1,9 +1,7 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: robinmueller
- * Date: 08.01.14
- * Time: 11:57
+ * User: RobM84 https://github.com/RobM84
+ * Date: 2014-10-14
  */
 
 $installer = $this;
