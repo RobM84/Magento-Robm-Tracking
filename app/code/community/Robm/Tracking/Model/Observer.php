@@ -1,9 +1,8 @@
 <?php
 /**
- * User: RobM84 https://github.com/RobM84
+ * @author RobM84 https://github.com/RobM84
  * Date: 2014-10-14
  */
-
 class Robm_Tracking_Model_Observer
 {
     public function setCampaignParamsToSessionAndCookie()
@@ -12,7 +11,7 @@ class Robm_Tracking_Model_Observer
 
         $utmSource = $request->getParam('utm_source');
         if ($utmSource) {
-            $campaignParams = Mage::helper("robm_tracking")->getCampaignParamsArray();
+            $campaignParams = Mage::helper('robm_tracking')->getCampaignParamsArray();
 
 
             $campaignString = '';
