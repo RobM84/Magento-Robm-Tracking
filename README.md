@@ -4,14 +4,19 @@ Magento customer and order tracking
 A tracking module which retrieves utm  URL parameters and saves them on registration and order.
 Five tracking parameters are saved from the URL to the session and later saved on the order and customer account.
 
-**The five parameters are:**  
-* utm_source   
-* utm_medium   
-* utm_content   
-* utm_campaign   
-* utm_term   
+**The five parameters are:**
+* utm_source
+* utm_medium
+* utm_content
+* utm_campaign
+* utm_term
 
-More information: https://support.google.com/analytics/answer/1033867?hl=en
+More information in: https://support.google.com/analytics/answer/1033867?hl=en.
+
+## Install
+
+1. Download the zip file of this project.
+1. Unzip from the project folder (and merge folders).
 
 ## Usage
 
