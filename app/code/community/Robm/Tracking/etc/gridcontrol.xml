@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gridcontrol>
+    <grids>
+        <sales_order_grid>
+            <utm>
+                <add>
+                    <type>text</type>
+                    <header>UTM</header>
+                    <index>order_campaign_params</index>
+                    <join table="sales/order" condition="main_table.entity_id={{table}}.entity_id" field="order_campaign_params"/>
+                    <renderer>robm_tracking/renderer</renderer>
+                </add>
+                <after>shipping_name</after>
+            </utm>
+        </sales_order_grid>
+    </grids>
+</gridcontrol>

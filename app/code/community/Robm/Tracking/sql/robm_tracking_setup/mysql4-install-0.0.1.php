@@ -6,5 +6,5 @@
 
 $installer = $this;
 $installer->startSetup();
-$installer->run("ALTER TABLE {$this->getTable('sales_flat_order')} ADD `order_campaign_params` VARCHAR(255) NULL;");
+$installer->run("ALTER TABLE {$this->getTable('sales_flat_order')} ADD `order_campaign_params` TEXT NULL;");
 $installer->endSetup();
