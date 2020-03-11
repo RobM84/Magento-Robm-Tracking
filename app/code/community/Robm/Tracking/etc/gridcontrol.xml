@@ -12,6 +12,37 @@
                 </add>
                 <after>shipping_name</after>
             </utm>
+            <real_order_id>
+                <updateColumn>
+                    <filter_index>main_table.increment_id</filter_index>
+                </updateColumn>
+            </real_order_id>
+
+            <status>
+                <updateColumn>
+                    <filter_index>main_table.status</filter_index>
+                </updateColumn>
+            </status>
+            <created_at>
+                <updateColumn>
+                    <filter_index>main_table.created_at</filter_index>
+                </updateColumn>
+            </created_at>
+            <store_id>
+                <updateColumn>
+                    <filter_index>main_table.store_id</filter_index>
+                </updateColumn>
+            </store_id>
+            <base_grand_total>
+                <updateColumn>
+                    <filter_index>main_table.base_grand_total</filter_index>
+                </updateColumn>
+            </base_grand_total>
+            <grand_total>
+                <updateColumn>
+                    <filter_index>main_table.grand_total</filter_index>
+                </updateColumn>
+            </grand_total>
         </sales_order_grid>
     </grids>
 </gridcontrol>

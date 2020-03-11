@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Robm_Tracking>
-            <version>0.0.3</version>
+            <version>0.0.4</version>
         </Robm_Tracking>
     </modules>
     <global>
