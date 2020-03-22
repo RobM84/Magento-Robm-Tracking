@@ -1,0 +1,22 @@
+<?php
+$_campaign = $this->getOrder()->getOrderCampaignParams();
+$_campaign = empty($_campaign) ? false : $_campaign;
+$_utm = unserialize($_campaign);
+?>
+<div class="clear">&nbsp;</div>
+<div class="box-right">
+    <div class="entry-edit">
+        <div class="entry-edit-head">
+            <h4 class="icon-head head-payment-method">UTM Info</h4>
+        </div>
+        <fieldset>
+            <?php if(!$_utm):?>
+                <div>Track info not available</div>
+            <?php else:?>
+                <?php foreach($_utm as $item => $value) :?>
+                    <div><?php echo $this->escapeHtml($item)?>: <?php echo $this->escapeHtml($value)?></div>
+                <?php endforeach; ?>
+            <?php endif;?>
+        </fieldset>
+    </div>
+</div>

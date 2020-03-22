@@ -1,2 +1,3 @@
 app/etc/modules/Robm_Tracking.xml app/etc/modules/Robm_Tracking.xml
 app/code/community/Robm/Tracking/* app/code/community/Robm/Tracking/
+app/design/adminhtml/default/default/template/robm_tracking/* app/design/adminhtml/default/default/template/robm_tracking/
