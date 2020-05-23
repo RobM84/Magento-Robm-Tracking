@@ -18,6 +18,9 @@ More information in: https://support.google.com/analytics/answer/1033867?hl=en.
 1. Download the zip file of this project.
 1. Unzip from the project folder (and merge folders).
 
+### Display in Sales Order Grid
+If you want to display UTM_Source in your Sales order Grid, you can install [Grid Control](https://github.com/magento-hackathon/GridControl) module. This module makes use of Grid Control to add new column there if you want to.
+
 ## Usage
 
 * User hits you site with tracking parameters: www.yoursite.com?utm_source=abc&utm_medium=def&utm_content=ghi&utm_campaign=jkl&utm_term=mno

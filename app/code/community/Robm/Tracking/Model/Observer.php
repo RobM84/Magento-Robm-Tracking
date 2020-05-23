@@ -14,10 +14,8 @@ class Robm_Tracking_Model_Observer
             $campaignParams = Mage::helper('robm_tracking')->getCampaignParamsArray();
 
 
-            $campaignString = '';
-            foreach ($campaignParams as $key => $value) {
-                $campaignString .= $key . '=' . $value . '|';
-            }
+            $campaignString = array();
+            $campaignString = serialize($campaignParams);
 
             // set data to customer session
             $session = Mage::getSingleton('customer/session');
@@ -26,14 +24,8 @@ class Robm_Tracking_Model_Observer
             // set cookie containing data
             $expire = time() + Robm_Tracking_Helper_Data::TRACKING_COOKIE_LIFETIME;
             $cookie = Mage::getSingleton('core/cookie');
-            $cookie->set(Robm_Tracking_Helper_Data::CUSTOMER_CAMPAIGN_PARAMS, $campaignString, $expire, '/');
+            $cookie->set(Robm_Tracking_Helper_Data::CUSTOMER_CAMPAIGN_PARAMS, $campaignString, $expire);
 
-            $db = Mage::getSingleton('core/resource')->getConnection('core_write');
-            try {
-                $db->insertOnDuplicate($db->getTableName('robm_tracking'), array('date' => date('Y-m-d'), 'utm_source' => $utmSource, 'clicks' => 1), array('clicks' => new Zend_Db_Expr('`clicks` +1')));
-            } catch (Exception $e) {
-                Mage::logException($e);
-            }
 
             return true;
         }
@@ -46,7 +38,7 @@ class Robm_Tracking_Model_Observer
         $cookie = Mage::getSingleton('core/cookie');
         $campaignString = $cookie->get(Robm_Tracking_Helper_Data::CUSTOMER_CAMPAIGN_PARAMS);
         if(is_null($campaignString) || $campaignString == '') {
-            $campaignString = 'untracked';
+            $campaignString = serialize(array());
         }
 
         $customerObject = $observer->getEvent()->getDataObject();
@@ -61,12 +53,35 @@ class Robm_Tracking_Model_Observer
         $cookie = Mage::getSingleton('core/cookie');
         $campaignString = $cookie->get(Robm_Tracking_Helper_Data::CUSTOMER_CAMPAIGN_PARAMS);
         if(is_null($campaignString) || $campaignString == '') {
-            $campaignString = 'untracked';
+            $campaignString = serialize(array());
         }
 
         $orderObject = $observer->getEvent()->getOrder();
         $orderObject->setOrderCampaignParams($campaignString);
 
         return $this;
+    }
+
+    public function addInfoToOrder(Varien_Event_Observer $observer)
+    {
+        $giftOptionsBlock = $observer->getBlock();
+        if ($giftOptionsBlock->getNameInLayout() !== 'order_info') {
+            // not interested in other blocks than gift_options
+            return;
+        }
+
+        $customInfoBlock = Mage::app()->getLayout()->createBlock(
+            'adminhtml/template',
+            'custom_order_info',
+            array(
+                'template' => 'robm_tracking/sales/order/view/utm.phtml',
+                'order' => Mage::registry('current_order'),
+            )
+        );
+
+        $giftOptionsHtml = $observer->getTransport()->getHtml();
+        $customHtml  = $customInfoBlock->toHtml();
+
+        $observer->getTransport()->setHtml($customHtml . $giftOptionsHtml);
     }
 }

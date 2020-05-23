@@ -17,12 +17,14 @@ class Robm_Tracking_Helper_Data extends Mage_Core_Helper_Abstract
     {
         $request = Mage::app()->getRequest();
         $campaignParams = array(
-            'utm_source' => utf8_encode($request->getParam('utm_source')),
-            'utm_medium' => utf8_encode($request->getParam('utm_medium')),
-            'utm_content' => utf8_encode($request->getParam('utm_content')),
-            'utm_campaign' => utf8_encode($request->getParam('utm_campaign')),
-            'utm_term' => utf8_encode($request->getParam('utm_term')),
+            'utm_source' => utf8_encode($request->getParam('utm_source', null)),
+            'utm_medium' => utf8_encode($request->getParam('utm_medium', null)),
+            'utm_content' => utf8_encode($request->getParam('utm_content', null)),
+            'utm_campaign' => utf8_encode($request->getParam('utm_campaign', null)),
+            'utm_term' => utf8_encode($request->getParam('utm_term', null)),
         );
+        $campaignParams = array_filter($campaignParams); //remove empty and null params
+
 
         return $campaignParams;
     }
