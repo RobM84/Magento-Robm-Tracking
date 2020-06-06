@@ -28,13 +28,6 @@ class Robm_Tracking_Model_Observer
             $cookie = Mage::getSingleton('core/cookie');
             $cookie->set(Robm_Tracking_Helper_Data::CUSTOMER_CAMPAIGN_PARAMS, $campaignString, $expire, '/');
 
-            $db = Mage::getSingleton('core/resource')->getConnection('core_write');
-            try {
-                $db->insertOnDuplicate($db->getTableName('robm_tracking'), array('date' => date('Y-m-d'), 'utm_source' => $utmSource, 'clicks' => 1), array('clicks' => new Zend_Db_Expr('`clicks` +1')));
-            } catch (Exception $e) {
-                Mage::logException($e);
-            }
-
             return true;
         }
 
